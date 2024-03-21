@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 project(
     "MyFirstProjectInCMake"
     VERSION 1.0.0
-    DESCRIPTION "Plantilla de Proyecto en C con CMake para S.O. II" 
+    DESCRIPTION "CMake C Project template for Operative Systems II"
     LANGUAGES C
 )
 
@@ -19,3 +19,14 @@ file(GLOB_RECURSE SOURCES "src/*.c")
 
 # Crea el ejecutable en base al nombre del proyecto de project() y src de file() 
 add_executable(${PROJECT_NAME} ${SOURCES})
+
+# Compila las librerias
+add_subdirectory(lib/libdyn)
+add_subdirectory(lib/libsta)
+
+# Incluye los headers de las librerias
+target_include_directories(${PROJECT_NAME} PUBLIC lib/libdyn/include)
+target_include_directories(${PROJECT_NAME} PUBLIC lib/libsta/include)
+
+# Linkea las librerias
+target_link_libraries(${PROJECT_NAME} StaticLib DynamicLib)
