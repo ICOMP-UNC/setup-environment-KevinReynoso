@@ -10,11 +10,11 @@ runs:
         PROJECT_PATH=$(pwd)
 
         # ToDo: Add documentation and describe better this command
+        # Ejecuta los tests del directorio build/tests, y si alguno falla, muestra la salida
         ctest --test-dir build/tests --output-on-failure
 
         # ToDo: Add documentation and describe better this command
-
-
+        # Genera el informe del coverage en base al path del proyecto y lo redirecciona a coverage.txt
         gcovr -r $PROJECT_PATH . > $PROJECT_PATH/coverage.txt
 
         echo "Runnig: gcovr -r $PROJECT_PATH ."
@@ -23,6 +23,7 @@ runs:
 
         # Find the value of correct coverage
         # ToDo: Add documentation and describe better this command
+        # busca del TOTAL el porcentaje del coverage
         COVERAGE_RESULT=$(grep "TOTAL" $PROJECT_PATH/coverage.txt | awk '{print $NF}' | cut -d '%' -f 1)
 
         # Coverage lines GT 20

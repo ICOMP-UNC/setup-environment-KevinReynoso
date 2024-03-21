@@ -11,6 +11,7 @@ runs:
           DOX_CONF_FILE=$(pwd)/Doxyfile
 
           # ToDo: Add documentation about this command and describe better
+          # Crea el DoxyFile
           {
               cat $DOX_CONF_FILE
               echo "INPUT" = $(pwd)/src $(pwd)/include $(pwd)/lib
@@ -23,6 +24,7 @@ runs:
           ERROR_FILE_FLAG=$(pwd)/dox_errors.txt
 
           # ToDo: Add documentation and describe better this command
+          # Genera la variable si todos los archivos han sido documentados correctamente. Cualquier error, se redirecciona la salida
           DOXYGEN_COMMAND=$(doxygen -s $DOX_CONF_FILE) > $ERROR_FILE_FLAG
 
           if [ -s $ERROR_FILE_FLAG ]; then
